@@ -1,12 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html
-        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-    <title>Title</title>
-</head>
-<body>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                template="/templates/public-template.xhtml">
 
-</body>
-</html>
+    <ui:define name="content">
+        <div class="ex-page-content text-center">
+            <div class="text-error"><span class="text-inverse">4</span><i class="ti-face-sad text-inverse"/><span class="text-inverse">5</span></div>
+            <h2>Who0ps! Method Not Allowed</h2><br />
+            <p class="text-muted">Use the navigation above or the button below to get back and track.</p>
+            <br />
+            <a class="btn btn-default waves-effect waves-light" href="/home"> Return Home</a>
+        </div>
+        <script>
+            var resizefunc = [];
+        </script>
+
+    </ui:define>
+</ui:composition>
