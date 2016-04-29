@@ -10,6 +10,8 @@ File: Components
 .btn {
   border-radius: 3px;
   outline: none !important;
+    font-family: "Helvetica Neue", Arial;
+    font-style: normal;
 }
 .btn-md {
   padding: 8px 16px;
