@@ -21,7 +21,7 @@
         <meta content="„Wer liefert was“ - Das Master of All Data App" name="description"/>
 
         <title>„Wer liefert was“ - Das Master of All Data App</title>
-
+        <link rel="icon" type="image/x-icon" href="#{request.contextPath}/assets/img/favico.ico" />
         <link href="#{request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="#{request.contextPath}/assets/css/core.css" rel="stylesheet" type="text/css"/>
         <link href="#{request.contextPath}/assets/css/components.css" rel="stylesheet" type="text/css"/>
@@ -42,9 +42,9 @@
 
         <div class="account-pages"></div>
         <div class="clearfix"></div>
-        <div class="wrapper-page">
-            <ui:insert name="content"/>
-        </div>
+
+        <ui:insert name="content"/>
+
         <!-- jQuery  -->
         <script type="application/javascript" src="#{request.contextPath}/assets/js/jquery.min.js"></script>
         <script type="application/javascript" src="#{request.contextPath}/assets/js/bootstrap.min.js"></script>

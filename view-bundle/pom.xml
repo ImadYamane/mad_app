@@ -11,6 +11,7 @@
 
     <artifactId>view-bundle</artifactId>
     <packaging>war</packaging>
+
     <dependencies>
         <dependency>
             <groupId>mad.profilter.app</groupId>
@@ -23,6 +24,40 @@
         <dependency>
             <groupId>mad.profilter.app</groupId>
             <artifactId>security-bundle</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.spec.javax.faces</groupId>
+            <artifactId>jboss-jsf-api_2.2_spec</artifactId>
+            <version>2.2.10</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Import the Rewrite lib for beautiful url  -->
+        <dependency>
+            <groupId>org.ocpsoft.rewrite</groupId>
+            <artifactId>rewrite-servlet</artifactId>
+            <version>2.0.12.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.ocpsoft.rewrite</groupId>
+            <artifactId>rewrite-config-prettyfaces</artifactId>
+            <version>2.0.12.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>5.3</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.primefaces.extensions</groupId>
+            <artifactId>primefaces-extensions</artifactId>
+            <version>4.0.0</version>
         </dependency>
     </dependencies>
     <build>

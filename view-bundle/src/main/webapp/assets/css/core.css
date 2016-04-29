@@ -2037,3 +2037,29 @@ body.fixed-left .side-menu.left {
 .waves-block {
   display: block;
 }
+
+.ui-state-error {
+  border-color: rgba(255, 0, 0, 0.33);
+}
+
+.ui-message-error {
+  margin: 0 !important;
+  padding: 2px 0 !important;
+  background-color: transparent;
+  border-color: transparent ;
+}
+.ui-message-error-icon {
+  background: none;
+}
+.ui-message-error-icon:after {
+  content: "\f119";
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  margin: -1px 0 0 4px;
+  display: block;
+}
+.wrapper-page-big {
+  width: 550px !important;
+}

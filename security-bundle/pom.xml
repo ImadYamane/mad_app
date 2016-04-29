@@ -10,6 +10,24 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>security-bundle</artifactId>
+    <name>LDAP Authentication Bundle</name>
+    <description>LDAP Authentication Bundle that provides a login system</description>
+    <url>http://www.wlw.de</url>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.picketlink</groupId>
+            <artifactId>picketlink-api</artifactId>
+            <version>2.7.1.Final</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.picketlink</groupId>
+            <artifactId>picketlink-impl</artifactId>
+            <version>2.7.1.Final</version>
+        </dependency>
+    </dependencies>
 
 
 </project>

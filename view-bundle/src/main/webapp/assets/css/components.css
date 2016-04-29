@@ -183,7 +183,7 @@ File: Components
 .light-green:active {
   background-color: #94C21A !important;
   border: 1px solid #94C21A !important;
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 
