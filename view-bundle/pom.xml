@@ -10,6 +10,56 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>view-bundle</artifactId>
-
-
+    <packaging>war</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>mad.profilter.app</groupId>
+            <artifactId>service-bundle</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mad.profilter.app</groupId>
+            <artifactId>api-bundle</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mad.profilter.app</groupId>
+            <artifactId>security-bundle</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <!-- Set the name of the war, used as the context root when the app is
+            deployed -->
+        <finalName>${project.artifactId}</finalName>
+    </build>
+    <profiles>
+        <profile>
+            <id>default</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <version>2.1.1</version>
+                        <configuration>
+                            <failOnMissingWebXml>false</failOnMissingWebXml>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.wildfly.plugins</groupId>
+                        <artifactId>wildfly-maven-plugin</artifactId>
+                        <version>1.1.0.Alpha5</version>
+                        <!--
+                        <configuration>
+                            <hostname>master2.wlwtool.de</hostname>
+                            <port>9990</port>
+                            <username>root</username>
+                            <password>wlwpwd</password>
+                        </configuration>
+                        -->
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>arq-wildfly-managed</id>
+        </profile>
+    </profiles>
 </project>

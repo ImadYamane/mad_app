@@ -81,20 +81,29 @@
         </plugins>
     </build>
     <dependencies>
+        <!-- Import the Common Annotations API (JSR-250), we use provided scope
+            as the API is included in WildFly 8 -->
         <dependency>
             <groupId>org.jboss.spec.javax.annotation</groupId>
             <artifactId>jboss-annotations-api_1.2_spec</artifactId>
-            <version>1.0.0.Final</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.spec.javax.ejb</groupId>
             <artifactId>jboss-ejb-api_3.1_spec</artifactId>
             <version>1.0.2.Final</version>
         </dependency>
+        <!-- Import the CDI API, we use provided scope as the API is included in WildFly  versions from 8  -->
         <dependency>
             <groupId>javax.enterprise</groupId>
             <artifactId>cdi-api</artifactId>
             <version>1.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Import the Servlet API, we use provided scope as the API is included in WildFly 8 -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.servlet</groupId>
+            <artifactId>jboss-servlet-api_3.1_spec</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -102,7 +111,8 @@
             <artifactId>jboss-jsf-api_2.2_spec</artifactId>
             <version>2.2.10</version>
             <scope>provided</scope>
-        </dependency>   <!-- Import the Rewrite lib for beautiful url  -->
+        </dependency>
+        <!-- Import the Rewrite lib for beautiful url  -->
         <dependency>
             <groupId>org.ocpsoft.rewrite</groupId>
             <artifactId>rewrite-servlet</artifactId>
@@ -112,12 +122,6 @@
             <groupId>org.ocpsoft.rewrite</groupId>
             <artifactId>rewrite-config-prettyfaces</artifactId>
             <version>2.0.12.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

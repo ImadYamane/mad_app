@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
+                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+
+    <!-- Home Mapping -->
+    <url-mapping id="home">
+        <pattern value="/home"/>
+        <view-id value="/pages/public/home.xhtml"/>
+    </url-mapping>
+    <!-- Search list Mapping -->
+    <url-mapping id="search-list">
+        <pattern value="/deals/search"/>
+        <view-id value="/pages/public/search_list.xhtml"/>
+    </url-mapping>
+    <!-- Profile Mapping -->
+    <url-mapping id="deal-profile">
+        <pattern value="/deals/profile"/>
+        <view-id value="/pages/public/deal_profile.xhtml"/>
+    </url-mapping>
+    <!-- Hot-Deals Mapping -->
+    <url-mapping id="hot-deals-list">
+        <pattern value="/deals"/>
+        <view-id value="/pages/public/hot_deals_list.xhtml"/>
+    </url-mapping>
+    <!-- Contact Mapping -->
+    <url-mapping id="contact">
+        <pattern value="/contact"/>
+        <view-id value="/pages/public/contact.xhtml"/>
+    </url-mapping>
+    <!-- Faq Mapping -->
+    <url-mapping id="faq">
+        <pattern value="/faq"/>
+        <view-id value="/pages/public/faq.xhtml"/>
+    </url-mapping>
+    <!-- Login Mapping -->
+    <url-mapping id="login">
+        <pattern value="/login"/>
+        <view-id value="/pages/public/login.xhtml"/>
+    </url-mapping>
+    <!-- Vendor cars Mapping -->
+    <url-mapping id="cars-list">
+        <pattern value="/secure/vendor/cars"/>
+        <view-id value="/pages/private/vendor/cars.xhtml"/>
+    </url-mapping>
+    <url-mapping id="cars-creation-page">
+        <pattern value="/secure/vendor/cars/create"/>
+        <view-id value="/pages/private/vendor/add_cars.xhtml"/>
+    </url-mapping>
+
+    <!-- Vendor Stores Mapping -->
+    <url-mapping id="stores-list">
+        <pattern value="/secure/vendor/stores"/>
+        <view-id value="/pages/private/vendor/stores.xhtml"/>
+    </url-mapping>
+    <url-mapping id="stores-creation-page">
+        <pattern value="/secure/vendor/stores/create"/>
+        <view-id value="/pages/private/vendor/add_stores.xhtml"/>
+    </url-mapping>
+    <!-- Vendor Settings Mapping -->
+    <url-mapping id="vendor-settings">
+        <pattern value="/secure/vendor/settings"/>
+        <view-id value="/pages/private/vendor/settings.xhtml"/>
+    </url-mapping>
+
+    <!-- Vendor Items Page Mapping -->
+    <url-mapping id="vendor-profile">
+        <pattern value="/secure/vendor/cars"/>
+        <view-id value="/pages/private/vendor/cars.xhtml"/>
+    </url-mapping>
+
+    <!-- Items Creation Mapping -->
+    <url-mapping id="items-creation-page">
+        <pattern value="/secure/vendor/items/create"/>
+        <view-id value="/pages/private/vendor/add_items.xhtml"/>
+    </url-mapping>
+
+</pretty-config>
