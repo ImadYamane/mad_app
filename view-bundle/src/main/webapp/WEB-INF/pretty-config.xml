@@ -10,5 +10,10 @@
         <pattern value="/home"/>
         <view-id value="/pages/public/home.xhtml"/>
     </url-mapping>
+    <!-- Home Mapping -->
+    <url-mapping id="login">
+        <pattern value="/login"/>
+        <view-id value="/pages/public/login.xhtml"/>
+    </url-mapping>
 
 </pretty-config>
