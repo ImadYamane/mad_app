@@ -1,5 +1,6 @@
 package api;
 
+import org.picketlink.Identity;
 import org.picketlink.credential.DefaultLoginCredentials;
 
 /**
@@ -7,5 +8,7 @@ import org.picketlink.credential.DefaultLoginCredentials;
  */
 public interface LoginAPI {
     Boolean login();
+    void logout();
     DefaultLoginCredentials getCredentials();
+    Identity getIdentity();
 }

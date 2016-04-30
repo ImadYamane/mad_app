@@ -1,6 +1,7 @@
 package managers;
 
 import api.LoginAPI;
+import org.picketlink.Identity;
 import org.picketlink.credential.DefaultLoginCredentials;
 import quilifier.LDAPLogin;
 
@@ -18,11 +19,21 @@ public class LDAPLoginManager implements LoginAPI {
 
     @Override
     public Boolean login() {
-        return true;
+        return false;
+    }
+
+    @Override
+    public void logout() {
+
     }
 
     @Override
     public DefaultLoginCredentials getCredentials() {
         return loginCredentials;
+    }
+
+    @Override
+    public Identity getIdentity() {
+        return null;
     }
 }

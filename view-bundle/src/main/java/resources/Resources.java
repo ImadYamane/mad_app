@@ -18,7 +18,7 @@ public class Resources {
 
     @Produces
     public Logger produceLoggerContext() {
-        return Logger.getLogger("MAD-APP-LOGGER");
+        return Logger.getLogger("MAD-APP-LOGGER:VIEW-BUNDLE");
     }
 
 }
