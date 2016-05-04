@@ -1,9 +1,11 @@
 package config;
 
+import authorizer.CustomPathAuthorizer;
 import org.picketlink.authentication.event.LoggedInEvent;
 import org.picketlink.authentication.event.PostLoggedOutEvent;
 import org.picketlink.config.SecurityConfigurationBuilder;
 import org.picketlink.event.SecurityConfigurationEvent;
+import org.picketlink.http.AuthenticationRequiredException;
 import org.picketlink.idm.config.IdentityConfiguration;
 import org.picketlink.idm.config.IdentityConfigurationBuilder;
 import org.picketlink.idm.event.IdentityTypeCreatedEvent;
@@ -39,9 +41,12 @@ public class HttpSecurityConfiguration {
                                       .unprotected()
                                 .forPath("/module/{identity.account.partition.name}/*")
                                     .authorizeWith()
-                                   // .authorizer(CustomPathAuthorizer.class)
-                                    .expression("#{identity.account.partition.name}")
-                                   .redirectTo("/forbidden").whenForbidden()
+                                    .authorizer(CustomPathAuthorizer.class)
+                                    //.expression("#{identity.account.partition.name}")
+                                   .redirectTo("/forbidden")
+                                        .whenForbidden()
+                                        .whenException(AuthenticationRequiredException.class)
+                                        .whenError()
                                 .forPath("/logout")
                                     .logout()
                                 .redirectTo("/home");

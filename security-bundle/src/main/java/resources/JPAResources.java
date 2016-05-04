@@ -13,7 +13,7 @@ import javax.persistence.PersistenceContext;
 
 public class JPAResources {
 
-    public enum REALM {acme, umbrella, wayne}
+    public enum REALM {SUPERUSER, MANAGER, USER, GUEST}
 
     /*
     * Since we are using JPAIdentityStore to store identity-related data, we must provide it with an EntityManager via a

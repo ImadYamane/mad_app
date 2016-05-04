@@ -5,6 +5,7 @@ import org.picketlink.http.authorization.PathAuthorizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.logging.Logger;
 
 /**
  * author.name: Imad Yamane
@@ -14,9 +15,16 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class CustomPathAuthorizer implements PathAuthorizer {
 
-    //todo implement the authorization class
+   Logger logger = Logger.getLogger(this.getClass().getName());
+
     @Override
     public boolean authorize(PathConfiguration pathConfiguration, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+
+        try {
+            System.out.println("-<-<-<>" + pathConfiguration.getUri());
+        } catch (Exception e) {
+            logger.warning(e.getMessage());
+        }
         return true;
     }
 }
