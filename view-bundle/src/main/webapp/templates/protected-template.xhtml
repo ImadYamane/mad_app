@@ -13,16 +13,25 @@
 <!--<![endif]-->
 <f:view locale="en">
     <h:head>
+        <!-- Header metadata & style -->
         <ui:include src="composites/head-metadata.xhtml" />
     </h:head>
-    <h:body id="home" styleClass="wide">
-
-
-        <div class="account-pages"></div>
-        <div class="clearfix"></div>
-
-        <ui:insert name="content"/>
-
+    <h:body id="home" styleClass="wide fixed-left">
+        <div id="wrapper">
+            <!-- Top Bar Start -->
+            <ui:include src="composites/top-bar.xhtml" />
+            <!-- Top Bar End -->
+            <!-- ========== Left Sidebar Start ========== -->
+            <ui:include src="composites/side-menu.xhtml" />
+            <!-- Left Sidebar End -->
+            <!-- Start right Content here -->
+            <ui:insert name="content"/>
+            <!-- End Right content here -->
+        </div>
+        <script type="application/javascript">
+            var resizefunc = [];
+        </script>
+        <!-- Footer metadata & style -->
         <ui:include src="composites/footer-metadata.xhtml" />
     </h:body>
 

@@ -8,7 +8,7 @@
     <!-- Home Mapping -->
     <url-mapping id="home">
         <pattern value="/home"/>
-        <view-id value="/pages/public/home.xhtml"/>
+        <view-id value="/pages/protected/home.xhtml"/>
     </url-mapping>
     <!-- Login Mapping -->
     <url-mapping id="login">
