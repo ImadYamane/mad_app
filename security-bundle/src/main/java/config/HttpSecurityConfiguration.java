@@ -1,4 +1,4 @@
-package managers;
+package config;
 
 import org.picketlink.authentication.event.LoggedInEvent;
 import org.picketlink.authentication.event.PostLoggedOutEvent;
@@ -13,30 +13,38 @@ import javax.enterprise.inject.Produces;
 import java.util.logging.Logger;
 
 /**
- * Created by ImadYamane on 29/04/16.
+ * author.name: Imad Yamane
+ * author.email: contact@imadyamane.de
+ * author.website: //imadyamane.de
+ * date: 04/05/16
  */
 public class HttpSecurityConfiguration {
 
     Logger logger = Logger.getLogger(this.getClass().getName());
 
-
+    @SuppressWarnings("unchecked")
     public void onInit(@Observes SecurityConfigurationEvent event) {
         SecurityConfigurationBuilder builder = event.getBuilder();
-
+        //we create the builder :)
         builder
                 .http()
-                .allPaths()
-                .authenticateWith()
-                     .form()
-                         .loginPage("/login")
-                         .errorPage("/error")
-                .forPath("/assets/*")
-                    .unprotected()
-                .forPath("/javax.faces.resource/*")
-                    .unprotected()
-                .forPath("/logout")
-                     .logout()
-                     .redirectTo("/home");
+                     .allPaths()
+                        .authenticateWith()
+                            .form() //use the form for authentication
+                                .loginPage("/login") //login page
+                                .errorPage("/error") //error page
+                                .forPath("/assets/*") //allow style for login page
+                                      .unprotected()
+                                .forPath("/javax.faces.resource/*") //allow resources for login page like js
+                                      .unprotected()
+                                .forPath("/module/{identity.account.partition.name}/*")
+                                    .authorizeWith()
+                                   // .authorizer(CustomPathAuthorizer.class)
+                                    .expression("#{identity.account.partition.name}")
+                                   .redirectTo("/forbidden").whenForbidden()
+                                .forPath("/logout")
+                                    .logout()
+                                .redirectTo("/home");
     }
 
     /**

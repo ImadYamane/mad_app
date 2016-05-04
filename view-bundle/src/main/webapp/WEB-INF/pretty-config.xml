@@ -10,16 +10,19 @@
         <pattern value="/home"/>
         <view-id value="/pages/public/home.xhtml"/>
     </url-mapping>
-    <!-- Home Mapping -->
+    <!-- Login Mapping -->
     <url-mapping id="login">
         <pattern value="/login"/>
         <view-id value="/pages/public/login.xhtml"/>
     </url-mapping>
-
-    <!-- Home Mapping -->
+    <!-- Sales Mapping -->
     <url-mapping id="sales">
         <pattern value="/sales"/>
         <view-id value="/pages/public/home.xhtml"/>
     </url-mapping>
-
+    <!-- Sales Mapping -->
+    <url-mapping id="forbidden">
+        <pattern value="/forbidden"/>
+        <view-id value="/pages/public/errors/403.xhtml"/>
+    </url-mapping>
 </pretty-config>

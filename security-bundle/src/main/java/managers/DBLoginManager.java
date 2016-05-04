@@ -9,7 +9,10 @@ import javax.inject.Inject;
 import java.util.logging.Logger;
 
 /**
- * Created by ImadYamane on 29/04/16.
+ * author.name: Imad Yamane
+ * author.email: contact@imadyamane.de
+ * author.website: //imadyamane.de
+ * date: 04/05/16
  */
 
 @DBLogin
