@@ -4,9 +4,12 @@ import org.picketlink.authentication.event.LoggedInEvent;
 import org.picketlink.authentication.event.PostLoggedOutEvent;
 import org.picketlink.config.SecurityConfigurationBuilder;
 import org.picketlink.event.SecurityConfigurationEvent;
+import org.picketlink.idm.config.IdentityConfiguration;
+import org.picketlink.idm.config.IdentityConfigurationBuilder;
 import org.picketlink.idm.event.IdentityTypeCreatedEvent;
 
 import javax.enterprise.event.Observes;
+import javax.enterprise.inject.Produces;
 import java.util.logging.Logger;
 
 /**
@@ -35,6 +38,27 @@ public class HttpSecurityConfiguration {
                      .logout()
                      .redirectTo("/home");
     }
+
+    /**
+     * This method uses the IdentityConfigurationBuilder to create an IdentityConfiguration, which
+     * defines how PicketLink stores identity-related data.  In this particular example, a
+     * JPAIdentityStore is configured to allow the identity data to be stored in a relational database
+     * using JPA.
+     */
+    @Produces
+    IdentityConfiguration produceIdentityManagementConfiguration() {
+        IdentityConfigurationBuilder builder = new IdentityConfigurationBuilder();
+
+        builder
+                .named("default")
+                .stores()
+                .jpa()
+                // Specify that this identity store configuration supports all features
+                .supportAllFeatures();
+
+        return builder.build();
+    }
+
 
     public void onPre(@Observes LoggedInEvent event) {
         logger.info("User login");

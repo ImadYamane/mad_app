@@ -2,6 +2,7 @@ package managers;
 
 import api.LoginAPI;
 import org.picketlink.Identity;
+import org.picketlink.authentication.AuthenticationException;
 import org.picketlink.credential.DefaultLoginCredentials;
 import quilifier.DBLogin;
 import javax.inject.Inject;
@@ -24,10 +25,15 @@ public class DBLoginManager implements LoginAPI {
 
     @Override
     public Boolean login() {
-        //login user
-         identity.login();
-        //return result
-        return identity.isLoggedIn();
+        try {
+            //login user
+            Identity.AuthenticationResult result =  identity.login();
+            logger.warning("authenticate(String, String, String) - AuthenticationResult result=" + result);
+            //return result
+            return identity.isLoggedIn();
+        } catch (AuthenticationException e) {
+           return false;
+        }
     }
 
     @Override

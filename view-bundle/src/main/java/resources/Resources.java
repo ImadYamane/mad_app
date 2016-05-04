@@ -8,6 +8,9 @@ import java.util.logging.Logger;
 /**
  * Created by ImadYamane on 29/04/16.
  */
+
+
+
 public class Resources {
 
     @Produces
