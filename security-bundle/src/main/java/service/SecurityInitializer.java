@@ -33,7 +33,7 @@ public class SecurityInitializer {
     public void create() {
         // Create user john
         User superuser = new User("superuser");
-        superuser.setEmail("imad@imad.com");
+        superuser.setEmail("imad@madi.com");
         superuser.setFirstName("Superuser");
         IdentityManager identityManager = this.partitionManager.createIdentityManager();
         //create superuser
