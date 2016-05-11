@@ -2,7 +2,7 @@
 
 ## System Requirements ##
 
-1. Get your environment installed. for more info see the  http://gitlab.webdev.wlw.de/webdevs/docker-compose project.
+1. Get your environment installed. For more info see the  http://gitlab.webdev.wlw.de/webdevs/docker-compose project.
 2. Maven 3.0.0 or newer, to build and deploy the examples
     * If you have not yet installed Maven, see the [Maven Getting Started Guide](http://maven.apache.org/guides/getting-started/index.html) for details.
     * If you have installed Maven, you can check the version by typing the following in a command line:
@@ -11,7 +11,7 @@
 
 ## Check Out the Source ##
 
-1. to clone this Git repository, use the following command:
+1. To clone this Git repository, use the following command:
 
             clone git@gitlab.webdev.wlw.de:webdevs/mad_profiler.git
 
@@ -23,11 +23,11 @@
 
             mvn clean packag
 
-4. navigate to the view bundle (view-bundle)
+4. Navigate to the view bundle (view-bundle)
 
             cd /view-bundle
 
-5. now you can deploy
+5. Now you can deploy
 
             mvn -Pdefault wildfly:deploy
 
