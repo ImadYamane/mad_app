@@ -81,14 +81,12 @@
                         <groupId>org.wildfly.plugins</groupId>
                         <artifactId>wildfly-maven-plugin</artifactId>
                         <version>1.1.0.Alpha5</version>
-                        <!--
                         <configuration>
-                            <hostname>master2.wlwtool.de</hostname>
+                            <hostname>192.168.99.100</hostname>
                             <port>9990</port>
-                            <username>root</username>
-                            <password>wlwpwd</password>
+                            <username>admin</username>
+                            <password>admin</password>
                         </configuration>
-                        -->
                     </plugin>
                 </plugins>
             </build>

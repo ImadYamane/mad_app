@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources>
+    <datasource jta="true" jndi-name="java:jboss/datasources/PicketLinkQuickstartDS" pool-name="picketlink-quickstart" enabled="true" use-ccm="true">
+        <connection-url>jdbc:postgresql://192.168.99.100:5432/postgres</connection-url>
+        <driver-class>org.postgresql.Driver</driver-class>
+        <driver>postgresql</driver>
+        <security>
+            <user-name>postgres</user-name>
+            <password>postgres</password>
+        </security>
+        <validation>
+            <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker"/>
+            <background-validation>true</background-validation>
+            <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter"/>
+        </validation>
+    </datasource>
+</datasources>
