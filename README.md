@@ -31,18 +31,18 @@ The test cases are dispatched to the container's environment through coordinatio
 
 The POM (pom.xml) file contains two profiles:
 
-arq-wildlfy-managed — managed container
-arq-wildfly-remote — remote container
+* arq-wildlfy-managed — managed container
+* arq-wildfly-remote — remote container
 
 By default the arq-wildfly-managed (managed container) profile is active. An Arquillian managed container is a remote container whose lifecycle is managed by Arquillian.
 
 ### Test Execution ###
 
-. Locally (you don not need to specify the name of the profile as the arq-wildlfy-managed profile is the default one)
+* Locally (you don not need to specify the name of the profile as the arq-wildlfy-managed profile is the default one)
 
             mvn clean test
 
-. or remotely in case of a server deployed in docker or in a jenkins environment 
+* or remotely in case of a server deployed in docker or in a jenkins environment 
 
             mvn clean test -Parq-wildfly-remote
 
