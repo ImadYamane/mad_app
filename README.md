@@ -23,13 +23,13 @@ The Arquillian testing platform is used to enable the testing automation. Arquil
 
 The Tests defines the three core aspects needed for the execution of an Arquillian test cases:
 
-1. container — the runtime environment
-2. deployment — the process of dispatching an artifact to a container
-3. archive — a packaged assembly of code, configuration and resources
+1. **container** — the runtime environment
+2. **deployment** — the process of dispatching an artifact to a container
+3. **archive** — a packaged assembly of code, configuration and resources
 
 The test cases are dispatched to the container's environment through coordination with ShrinkWrap, which is used to declaratively define a custom Java EE archive that encapsulates the test classes and its dependent resources. Arquillian packages the ShrinkWrap defined archive at runtime and deploys it to the target container. It then negotiates the execution of the test methods and captures the test results using remote communication with the server. Finally, Arquillian undeploys the test archive.
 
-The POM (pom.xml) file contains two profiles:
+The **POM** (pom.xml) file contains two profiles:
 
 * arq-wildlfy-managed — managed container
 * arq-wildfly-remote — remote container
@@ -42,7 +42,7 @@ By default the arq-wildfly-managed (managed container) profile is active. An Arq
 
             mvn clean test
 
-* or remotely in case of a server deployed in docker or in a jenkins environment 
+* or remotely in case of a server deployed in **Docker** or in a **Jenkins** environment 
 
             mvn clean test -Parq-wildfly-remote
 
