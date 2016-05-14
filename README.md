@@ -91,4 +91,4 @@ Some useful parameters:
                 
 ## Authors    
          
- * author : Imad Hamoumi
+ * Imad Hamoumi
