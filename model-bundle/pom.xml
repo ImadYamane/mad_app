@@ -10,6 +10,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>model-bundle</artifactId>
-
+    <name>Model Bundle</name>
+    <description>This bundle provides the view of the app.</description>
+    <url>http://www.wlw.de</url>
 
 </project>

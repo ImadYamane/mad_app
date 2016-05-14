@@ -54,7 +54,7 @@ The container's configuration resides in the Arquillian XML configuration file  
 ## How to deploy my project? ##
 
 1. Make sure you start the Wildfly server as described in the http://gitlab.webdev.wlw.de/webdevs/docker-compose.
-2. Open a command line and navigate to the root directory of the project you want to run.
+2. Open a command line and navigate to the root directory of the project.
 3. Use this command to build and deploy the archive:
 
     + In case without running the tests:
