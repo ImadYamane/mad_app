@@ -59,12 +59,12 @@ The container's configuration resides in the Arquillian XML configuration file  
 
     + In case without running the tests:
     
-                mvn -DskipTests -Parquillian-wildfly-deploy wildfly:deploy
+                mvn -DskipTests -Parquillian-wildfly-deploy wildfly:deploy -Ddb.ip=DATABASE_IP  -Dserver.host=HOST_IP
     
     + In case you want to deploy after the tests passe: 
 
-                mvn -Parquillian-wildfly-embedded, arquillian-wildfly-deploy  wildfly:deploy
-
+                mvn -Parquillian-wildfly-embedded, arquillian-wildfly-deploy  wildfly:deploy -Ddb.ip=DATABASE_IP  -Dserver.host=HOST_IP
+ 
 
 ## How to undeploy my project? ##
 
@@ -73,4 +73,22 @@ The container's configuration resides in the Arquillian XML configuration file  
 
 ## More info? ##
 
-//todo
+Some useful parameters:
+
+    Postgres:
+            * db.ip
+            * db.port 
+            * db.name  //database name
+            * db.username
+            * db.password
+
+    Server:
+                * host.ip
+                * host.port 
+                * host.username
+                * host.password
+                
+                
+## Authors ##       
+         
+ * author : Imad Hamoumi
