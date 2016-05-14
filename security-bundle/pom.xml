@@ -34,7 +34,6 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -55,11 +54,11 @@
                                     <properties>
                                         <jndi-name>java:jboss/datasources/PicketLinkQuickstartDS</jndi-name>
                                         <enabled>true</enabled>
-                                        <connection-url>jdbc:postgresql://192.168.99.101:5432/postgres</connection-url>
+                                        <connection-url>jdbc:postgresql://${db.ip}:${db.port}/${db.name}</connection-url>
                                         <driver-class>org.postgresql.Driver</driver-class>
                                         <driver-name>postgresql</driver-name>
-                                        <user-name>postgres</user-name>
-                                        <password>postgres</password>
+                                        <user-name>${db.username}</user-name>
+                                        <password>${db.password}</password>
                                     </properties>
                                 </resource>
                             </resources>
