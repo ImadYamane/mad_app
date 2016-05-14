@@ -83,10 +83,10 @@ Some useful parameters:
             * db.password
 
     Server:
-                * host.ip
-                * host.port 
-                * host.username
-                * host.password
+            * host.ip
+            * host.port 
+            * host.username
+            * host.password
                 
                 
 ## Authors    
