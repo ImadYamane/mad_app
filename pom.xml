@@ -25,8 +25,8 @@
         <!-- maven-compiler-plugin -->
         <maven.compiler.target>1.6</maven.compiler.target>
         <maven.compiler.source>1.6</maven.compiler.source>
-
-        <version.org.wildfly>10.0.0.Final</version.org.wildfly>
+        <maven.surefire.plugin.version>2.18.1</maven.surefire.plugin.version>
+        <wildfly.version>8.2.1.Final</wildfly.version>
     </properties>
     <build>
         <finalName>ProfilerApp-${project.artifactId}</finalName>
@@ -131,29 +131,62 @@
         </dependency>
     </dependencies>
     <profiles>
+        <!-- Arquillian WildFly remote profile -->
         <profile>
-            <id>arq-wildfly-managed</id>
+            <id>arquillian-wildfly-remote</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <dependencies>
                 <dependency>
                     <groupId>org.wildfly</groupId>
-                    <artifactId>wildfly-arquillian-container-managed</artifactId>
+                    <artifactId>wildfly-arquillian-container-remote</artifactId>
                     <version>8.2.1.Final</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.jboss.resteasy</groupId>
+                    <artifactId>resteasy-client</artifactId>
+                    <version>3.0.5.Final</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.jboss.resteasy</groupId>
+                    <artifactId>resteasy-jaxb-provider</artifactId>
+                    <version>3.0.5.Final</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
             <build>
-                <testResources>
-                    <testResource>
-                        <directory>src/test/resources</directory>
-                    </testResource>
-                </testResources>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>arquillian-wildfly-embedded</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.wildfly</groupId>
+                    <artifactId>wildfly-embedded</artifactId>
+                    <version>${wildfly.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.wildfly</groupId>
+                    <artifactId>wildfly-arquillian-container-embedded</artifactId>
+                    <version>${wildfly.version}</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+            <build>
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-dependency-plugin</artifactId>
+                        <version>2.10</version>
                         <executions>
                             <execution>
                                 <id>unpack</id>
@@ -166,7 +199,7 @@
                                         <artifactItem>
                                             <groupId>org.wildfly</groupId>
                                             <artifactId>wildfly-dist</artifactId>
-                                            <version>${version.org.wildfly}</version>
+                                            <version>${wildfly.version}</version>
                                             <type>zip</type>
                                             <overWrite>false</overWrite>
                                             <outputDirectory>${project.build.directory}</outputDirectory>
@@ -176,23 +209,24 @@
                             </execution>
                         </executions>
                     </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>${maven.surefire.plugin.version}</version>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+                                <jboss.home>${project.build.directory}/wildfly-${wildfly.version}</jboss.home>
+                                <module.path>${project.build.directory}/wildfly-${wildfly.version}/modules</module.path>
+                            </systemPropertyVariables>
+                            <redirectTestOutputToFile>false</redirectTestOutputToFile>
+                        </configuration>
+                    </plugin>
                 </plugins>
             </build>
         </profile>
-        <!-- Arquillian WildFly remote profile -->
         <profile>
-            <id>arq-widlfly-remote</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.wildfly</groupId>
-                    <artifactId>wildfly-arquillian-container-remote</artifactId>
-                    <version>8.2.1.Final</version>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <id>deploy</id>
+            <id>arquillian-wildfly-deploy</id>
             <build>
                 <plugins>
                     <plugin>
@@ -217,5 +251,6 @@
                 </plugins>
             </build>
         </profile>
+
     </profiles>
 </project>
