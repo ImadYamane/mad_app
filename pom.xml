@@ -132,41 +132,12 @@
     </dependencies>
     <profiles>
         <!-- Arquillian WildFly remote profile -->
+
         <profile>
-            <id>arquillian-wildfly-remote</id>
+            <id>arquillian-wildfly-embedded</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>org.wildfly</groupId>
-                    <artifactId>wildfly-arquillian-container-remote</artifactId>
-                    <version>8.2.1.Final</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.resteasy</groupId>
-                    <artifactId>resteasy-client</artifactId>
-                    <version>3.0.5.Final</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.resteasy</groupId>
-                    <artifactId>resteasy-jaxb-provider</artifactId>
-                    <version>3.0.5.Final</version>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>arquillian-wildfly-embedded</id>
             <dependencies>
                 <dependency>
                     <groupId>org.wildfly</groupId>
@@ -195,6 +166,7 @@
                                     <goal>unpack</goal>
                                 </goals>
                                 <configuration>
+                                    <skip>true</skip>
                                     <artifactItems>
                                         <artifactItem>
                                             <groupId>org.wildfly</groupId>
@@ -240,9 +212,9 @@
                         <groupId>org.wildfly.plugins</groupId>
                         <artifactId>wildfly-maven-plugin</artifactId>
                         <version>1.1.0.Alpha5</version>
-
                         <configuration>
-                            <hostname>192.168.99.100</hostname>
+                            <skip>true</skip>
+                            <hostname>127.0.0.1</hostname>
                             <port>9990</port>
                             <username>admin</username>
                             <password>admin</password>
@@ -251,6 +223,35 @@
                 </plugins>
             </build>
         </profile>
-
+        <profile>
+            <id>arquillian-wildfly-remote</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.wildfly</groupId>
+                    <artifactId>wildfly-arquillian-container-remote</artifactId>
+                    <version>8.2.1.Final</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.jboss.resteasy</groupId>
+                    <artifactId>resteasy-client</artifactId>
+                    <version>3.0.5.Final</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.jboss.resteasy</groupId>
+                    <artifactId>resteasy-jaxb-provider</artifactId>
+                    <version>3.0.5.Final</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 </project>
