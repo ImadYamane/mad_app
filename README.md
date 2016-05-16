@@ -31,15 +31,16 @@ The test cases are dispatched to the container's environment through coordinatio
 
 The **POM** (pom.xml) file contains three profiles:
 
+* arquillian-wildfly-managed — the managed container (Test will run only if no wildfly instance is running on the host of test)
 * arquillian-wildfly-embedded — the embedded container
 * arquillian-wildfly-remote — remote container
 * arquillian-wildfly-deploy - to deploy the archive to the server
 
-By default the arquillian-wildfly-embedded (embedded container) profile is active. An Arquillian embedded container is a container whose lifecycle is managed by Arquillian.
+By default the arquillian-wildfly-managed (managed container) profile is active. An Arquillian managed container is a container whose lifecycle is managed by Arquillian.
 
 ### Test Execution ###
 
-* Locally (you don not need to specify the name of the profile as the arquillian-wildfly-embedded profile is the default one)
+* Locally (you don not need to specify the name of the profile as the arquillian-wildfly-managed profile is the default one)
 
             mvn clean test
 
@@ -50,6 +51,9 @@ By default the arquillian-wildfly-embedded (embedded container) profile is activ
 Please note that you have to set the IP address in case you want to test remotely.
 The container's configuration resides in the Arquillian XML configuration file  (test/resources/arquillian.xml).
 
+### Use Docker for testing ###
+
+//todo
 
 ## How to deploy my project? ##
 
@@ -59,11 +63,11 @@ The container's configuration resides in the Arquillian XML configuration file  
 
     + In case without running the tests:
     
-                mvn -DskipTests -Parquillian-wildfly-deploy wildfly:deploy -Ddb.ip=DATABASE_IP  -Dserver.host=HOST_IP
+                 mvn clean -DskipTests -Parquillian-wildfly-deploy  wildfly:deploy
     
     + In case you want to deploy after the tests passe: 
 
-                mvn -Parquillian-wildfly-embedded, arquillian-wildfly-deploy  wildfly:deploy -Ddb.ip=DATABASE_IP  -Dserver.host=HOST_IP
+                //todo
  
 
 ## How to undeploy my project? ##

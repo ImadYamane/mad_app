@@ -30,9 +30,10 @@
         <wildfly.version>8.2.1.Final</wildfly.version>
         <version.org.wildfly>8.1.0.Final</version.org.wildfly>
         <!-- Postgres properties -->
-        <db.ip>127.0.0.1</db.ip> <!-- Default database ip -->
+        <db.ip>192.168.99.101</db.ip> <!-- Default database ip -->
         <db.name>postgres</db.name> <!-- Default database name -->
         <db.port>5432</db.port> <!-- Default database port -->
+        <db.name>postgres</db.name> <!-- Default database port -->
         <db.username>postgres</db.username> <!-- Default database user -->
         <db.password>postgres</db.password> <!-- Default database password -->
         <!-- Deployment Server properties -->
@@ -146,7 +147,7 @@
     <profiles>
         <!-- Arquillian WildFly managed profile -->
         <profile>
-            <id>arq-wildfly-managed</id>
+            <id>arquillian-wildfly-managed</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
@@ -269,14 +270,41 @@
                     <plugin>
                         <groupId>org.wildfly.plugins</groupId>
                         <artifactId>wildfly-maven-plugin</artifactId>
-                        <version>1.1.0.Alpha5</version>
+                        <version>1.1.0.Alpha8</version>
                         <configuration>
-                            <!--<skip>true</skip> -->
+                            <skip>true</skip>
                             <hostname>${server.host}</hostname>
                             <port>${server.port}</port>
                             <username>${server.username}</username>
                             <password>${server.password}</password>
                         </configuration>
+                        <!--
+                        <executions>
+                            <execution>
+                                <id>add-datasource</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>add-resource</goal>
+                                </goals>
+                              <configuration>
+                                    <address>subsystem=datasources,data-source=java:jboss/datasources/PicketLinkQuickstartDS</address>
+                                    <resources>
+                                        <resource>
+                                            <properties>
+                                                <jndi-name>java:jboss/datasources/PicketLinkQuickstartDS</jndi-name>
+                                                <enabled>true</enabled>
+                                                <connection-url>jdbc:postgresql://192.168.99.101:5432/postgres</connection-url>
+                                                <driver-name>postgresql</driver-name>
+                                                <user-name>postgres</user-name>
+                                                <password>postgres</password>
+                                                <pool-name>picketlink-default</pool-name>
+                                            </properties>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        -->
                     </plugin>
                 </plugins>
             </build>

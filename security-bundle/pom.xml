@@ -11,7 +11,9 @@
 
     <artifactId>security-bundle</artifactId>
     <name>Security and Authentication Bundle</name>
-    <description>Security and Authentication Bundle that provides a login system and some security management utilities</description>
+    <description>Security and Authentication Bundle that provides a login system and some security management
+        utilities
+    </description>
     <url>http://www.wlw.de</url>
 
     <dependencies>
@@ -34,40 +36,4 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
-    <!--
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.wildfly.plugins</groupId>
-                <artifactId>wildfly-maven-plugin</artifactId>
-                <version>1.1.0.Alpha8</version>
-                <executions>
-                    <execution>
-                        <id>add-datasource</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>add-resource</goal>
-                        </goals>
-                        <configuration>
-                            <address>subsystem=datasources,pool-name=picketlink-quickstart</address>
-                            <resources>
-                                <resource>
-                                    <properties>
-                                        <jndi-name>java:jboss/datasources/PicketLinkQuickstartDS</jndi-name>
-                                        <enabled>true</enabled>
-                                        <connection-url>jdbc:postgresql://${db.ip}:${db.port}/${db.name}</connection-url>
-                                        <driver-class>org.postgresql.Driver</driver-class>
-                                        <driver-name>postgresql</driver-name>
-                                        <user-name>${db.username}</user-name>
-                                        <password>${db.password}</password>
-                                    </properties>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-    -->
 </project>
