@@ -77,7 +77,8 @@ The container's configuration resides in the Arquillian XML configuration file  
 
 ## More info? ##
 
-Some useful parameters:
+
+Some useful parameters: (Currently not available for security reasons - Imad)
 
     Postgres:
             * db.ip
