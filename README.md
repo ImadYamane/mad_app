@@ -29,46 +29,71 @@ The Tests defines the three core aspects needed for the execution of an Arquilli
 
 The test cases are dispatched to the container's environment through coordination with ShrinkWrap, which is used to declaratively define a custom Java EE archive that encapsulates the test classes and its dependent resources. Arquillian packages the ShrinkWrap defined archive at runtime and deploys it to the target container. It then negotiates the execution of the test methods and captures the test results using remote communication with the server. Finally, Arquillian undeploys the test archive.
 
-The **POM** (pom.xml) file contains two profiles:
+The **POM** (pom.xml) file contains three profiles:
 
-* arq-wildlfy-managed — managed container
-* arq-wildfly-remote — remote container
+* arquillian-wildfly-managed — the managed container (Test will run only if no wildfly instance is running on the host of test)
+* arquillian-wildfly-embedded — the embedded container
+* arquillian-wildfly-remote — remote container
+* arquillian-wildfly-deploy - to deploy the archive to the server
 
-By default the arq-wildfly-managed (managed container) profile is active. An Arquillian managed container is a remote container whose lifecycle is managed by Arquillian.
+By default the arquillian-wildfly-managed (managed container) profile is active. An Arquillian managed container is a container whose lifecycle is managed by Arquillian.
 
 ### Test Execution ###
 
-* Locally (you don not need to specify the name of the profile as the arq-wildlfy-managed profile is the default one)
+* Locally (you don not need to specify the name of the profile as the arquillian-wildfly-managed profile is the default one)
 
             mvn clean test
 
-* or remotely in case of a server deployed in **Docker** or in a **Jenkins** environment 
+* or on a remote server
 
-            mvn clean test -Parq-wildfly-remote
+            mvn clean test -Parquillian-wildfly-remote
 
-Please note that you have to set the path of your wildfly server in case of a local test or the IP address in case you want to test remotely.
+Please note that you have to set the IP address in case you want to test remotely.
 The container's configuration resides in the Arquillian XML configuration file  (test/resources/arquillian.xml).
 
+### Use Docker for testing ###
+
+//todo
 
 ## How to deploy my project? ##
 
 1. Make sure you start the Wildfly server as described in the http://gitlab.webdev.wlw.de/webdevs/docker-compose.
-2. Open a command line and navigate to the root directory of the project you want to run.
+2. Open a command line and navigate to the root directory of the project.
 3. Use this command to build and deploy the archive:
 
-            mvn clean packag
+    + In case without running the tests:
+    
+                 mvn clean -DskipTests -Parquillian-wildfly-deploy  wildfly:deploy
+    
+    + In case you want to deploy after the tests passe: 
 
-4. Navigate to the view bundle (view-bundle)
+                //todo
+ 
 
-            cd /view-bundle
+## How to undeploy my project? ##
 
-5. Now you can deploy
-
-            mvn -Pdefault wildfly:deploy
+                mvn -DskipTests -Parquillian-wildfly-deploy  wildfly:undeploy
 
 
 ## More info? ##
 
-//todo
 
-- Un-deploy the project
+Some useful parameters: (Currently not available for security reasons - Imad)
+
+    Postgres:
+            * db.ip
+            * db.port 
+            * db.name  //database name
+            * db.username
+            * db.password
+
+    Server:
+            * host.ip
+            * host.port 
+            * host.username
+            * host.password
+                
+                
+## Authors    
+         
+ * Imad Hamoumi

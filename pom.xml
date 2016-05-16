@@ -25,11 +25,25 @@
         <!-- maven-compiler-plugin -->
         <maven.compiler.target>1.6</maven.compiler.target>
         <maven.compiler.source>1.6</maven.compiler.source>
-
-        <version.org.wildfly>10.0.0.Final</version.org.wildfly>
+        <maven.surefire.plugin.version>2.18.1</maven.surefire.plugin.version>
+        <!-- Maven properties -->
+        <wildfly.version>8.2.1.Final</wildfly.version>
+        <version.org.wildfly>8.1.0.Final</version.org.wildfly>
+        <!-- Postgres properties -->
+        <db.ip>192.168.99.101</db.ip> <!-- Default database ip -->
+        <db.name>postgres</db.name> <!-- Default database name -->
+        <db.port>5432</db.port> <!-- Default database port -->
+        <db.name>postgres</db.name> <!-- Default database port -->
+        <db.username>postgres</db.username> <!-- Default database user -->
+        <db.password>postgres</db.password> <!-- Default database password -->
+        <!-- Deployment Server properties -->
+        <server.host>127.0.0.1</server.host> <!-- Host ip -->
+        <server.port>9990</server.port> <!-- Host port -->
+        <server.username>admin</server.username> <!-- Host user -->
+        <server.password>admin</server.password> <!-- Host name -->
     </properties>
     <build>
-        <finalName>ProfilerApp-${project.artifactId}</finalName>
+        <finalName>Profiler_App_${project.artifactId}</finalName>
     </build>
     <dependencyManagement>
         <dependencies>
@@ -131,8 +145,9 @@
         </dependency>
     </dependencies>
     <profiles>
+        <!-- Arquillian WildFly managed profile -->
         <profile>
-            <id>arq-wildfly-managed</id>
+            <id>arquillian-wildfly-managed</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
@@ -140,7 +155,7 @@
                 <dependency>
                     <groupId>org.wildfly</groupId>
                     <artifactId>wildfly-arquillian-container-managed</artifactId>
-                    <version>8.2.1.Final</version>
+                    <version>${version.org.wildfly}</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -179,20 +194,70 @@
                 </plugins>
             </build>
         </profile>
-        <!-- Arquillian WildFly remote profile -->
+
         <profile>
-            <id>arq-widlfly-remote</id>
+            <id>arquillian-wildfly-embedded</id>
             <dependencies>
                 <dependency>
                     <groupId>org.wildfly</groupId>
-                    <artifactId>wildfly-arquillian-container-remote</artifactId>
-                    <version>8.2.1.Final</version>
+                    <artifactId>wildfly-embedded</artifactId>
+                    <version>${wildfly.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.wildfly</groupId>
+                    <artifactId>wildfly-arquillian-container-embedded</artifactId>
+                    <version>${wildfly.version}</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>2.10</version>
+                        <executions>
+                            <execution>
+                                <id>unpack</id>
+                                <phase>process-test-classes</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <!--<skip>true</skip> -->
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>org.wildfly</groupId>
+                                            <artifactId>wildfly-dist</artifactId>
+                                            <version>${wildfly.version}</version>
+                                            <type>zip</type>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${project.build.directory}</outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>${maven.surefire.plugin.version}</version>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+                                <jboss.home>${project.build.directory}/wildfly-${wildfly.version}</jboss.home>
+                                <module.path>${project.build.directory}/wildfly-${wildfly.version}/modules</module.path>
+                            </systemPropertyVariables>
+                            <redirectTestOutputToFile>false</redirectTestOutputToFile>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
         <profile>
-            <id>deploy</id>
+            <id>arquillian-wildfly-deploy</id>
             <build>
                 <plugins>
                     <plugin>
@@ -205,14 +270,59 @@
                     <plugin>
                         <groupId>org.wildfly.plugins</groupId>
                         <artifactId>wildfly-maven-plugin</artifactId>
-                        <version>1.1.0.Alpha5</version>
-
+                        <version>1.1.0.Alpha8</version>
                         <configuration>
-                            <hostname>192.168.99.100</hostname>
-                            <port>9990</port>
-                            <username>admin</username>
-                            <password>admin</password>
+                            <skip>true</skip>
+                            <hostname>${server.host}</hostname>
+                            <port>${server.port}</port>
+                            <username>${server.username}</username>
+                            <password>${server.password}</password>
                         </configuration>
+                        <!--
+                        <executions>
+                            <execution>
+                                <id>add-datasource</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>add-resource</goal>
+                                </goals>
+                              <configuration>
+                                    <address>subsystem=datasources,data-source=java:jboss/datasources/PicketLinkQuickstartDS</address>
+                                    <resources>
+                                        <resource>
+                                            <properties>
+                                                <jndi-name>java:jboss/datasources/PicketLinkQuickstartDS</jndi-name>
+                                                <enabled>true</enabled>
+                                                <connection-url>jdbc:postgresql://192.168.99.101:5432/postgres</connection-url>
+                                                <driver-name>postgresql</driver-name>
+                                                <user-name>postgres</user-name>
+                                                <password>postgres</password>
+                                                <pool-name>picketlink-default</pool-name>
+                                            </properties>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        -->
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>arquillian-wildfly-remote</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.wildfly.arquillian</groupId>
+                    <artifactId>wildfly-arquillian-container-remote</artifactId>
+                    <version>1.1.0.Final</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
                     </plugin>
                 </plugins>
             </build>

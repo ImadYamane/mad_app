@@ -10,10 +10,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>security-bundle</artifactId>
-    <name>LDAP Authentication Bundle</name>
-    <description>LDAP Authentication Bundle that provides a login system</description>
+    <name>Security and Authentication Bundle</name>
+    <description>Security and Authentication Bundle that provides a login system and some security management
+        utilities
+    </description>
     <url>http://www.wlw.de</url>
-
 
     <dependencies>
         <dependency>
@@ -35,6 +36,4 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
-
-
 </project>
